@@ -2,26 +2,18 @@ require 'pry'
 #LinkedList class, which will represent the full list.
 class LinkedList
  #Nodeclass, containing a #value method and a link to the #next_node, set both as nil by default.
- attr_accessor :head,
+ attr_accessor :head
+ attr_reader :size
 
 
  def initialize
     self.head = nil
-    
-    
-  end
-  
-  class Node
-    attr_accessor :value, :next_node
-
-    def initialize (value)
-     self.value = value
-     self.next_node = nil
-    end
+    self.size = 0
   end
 
-  #append(value) adds a new node containing value to the end of the list
-  def append(value)
+   #append(value) adds a new node containing value to the end of the list
+   def append(value)
+    self.size += 1
     if self.head.nil?
       self.head = Node.new(value)
     else
@@ -36,6 +28,7 @@ class LinkedList
 
   # prepend(value) adds a new node containing value to the start of the list
   def prepend(value)
+    self.size += 1
     if self.head.nil?
       self.head = Node.new(value)
     else
@@ -45,6 +38,20 @@ class LinkedList
     end
     
   end 
+  
+  private
+
+  attr_writer :size
+
+  class Node
+    attr_accessor :value, :next_node
+
+    def initialize (value)
+     self.value = value
+     self.next_node = nil
+    end
+  end
+  
 end
 
 l = LinkedList.new
@@ -60,6 +67,7 @@ p l.head.next_node.next_node.value
 l.prepend('z')
 # binding.pry
 p l.head.value
+p l.size
 
 
   # size returns the total number of nodes in the list

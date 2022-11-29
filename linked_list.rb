@@ -2,11 +2,14 @@
 #LinkedList class, which will represent the full list.
 class LinkedList
  #Nodeclass, containing a #value method and a link to the #next_node, set both as nil by default.
-  def initialize
+ attr_writer :head, :tail,
+ def initialize
     @head = nil
+    @tail = nil
   end
   
   class Node
+    attr_writer :next_node
    def initialize (value)
      @value = value
      @next_node = nil
@@ -15,17 +18,19 @@ class LinkedList
 
   #append(value) adds a new node containing value to the end of the list
   def append(value)
-    Node.new(value)
+    self.tail = Node.new(value)
   end
 
   # prepend(value) adds a new node containing value to the start of the list
   def prepend(value)
-    
-   
+    self.head = Node.new(value)
+  end 
 end
 
 l = LinkedList.new
 l.append('a')
+l.prepend('b')
+
 p l
 
   # size returns the total number of nodes in the list

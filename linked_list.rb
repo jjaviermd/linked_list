@@ -1,10 +1,10 @@
 require 'pry'
-#LinkedList class, which will represent the full list.
-class LinkedList
- #Nodeclass, containing a #value method and a link to the #next_node, set both as nil by default.
- attr_accessor :head
- attr_reader :size
 
+class LinkedList
+  # head returns the first node in the list
+ attr_accessor :head
+ # size returns the total number of nodes in the list
+ attr_reader :size
 
  def initialize
     self.head = nil
@@ -39,6 +39,7 @@ class LinkedList
     
   end 
 
+  # tail returns the last node in the list
   def tail
     if self.head.nil?
       raise EstandardError, "Linked list is empty"
@@ -50,6 +51,27 @@ class LinkedList
       last
     end  
   end
+
+  # at(index) returns the node at the given index
+  def at(index)
+    if index < 0 || index >= self.size
+      raise EstandardError, "Index out of range"
+    else
+      if index == 0
+        return self.head
+      else
+        current = self.head
+        index.times do
+          current = current.next_node
+        end
+        return current
+      end
+    end  
+  end
+  # pop removes the last element from the list
+  # contains?(value) returns true if the passed in value is in the list and otherwise returns false.
+  # find(value) returns the index of the node containing value, or nil if not found.
+  # to_s represent your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> nil
   
   private
 
@@ -77,17 +99,11 @@ l.append('c')
 # p l.head.next_node.value
 # p l.head.next_node.next_node.value
 l.prepend('z')
-# binding.pry
-p l.head
-p l.size
-p l.tail.value
+p l.at(1).value
 
 
-  # size returns the total number of nodes in the list
-  # head returns the first node in the list
-  # tail returns the last node in the list
-  # at(index) returns the node at the given index
-  # pop removes the last element from the list
-  # contains?(value) returns true if the passed in value is in the list and otherwise returns false.
-  # find(value) returns the index of the node containing value, or nil if not found.
-  # to_s represent your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> nil
+
+  
+ 
+  
+  

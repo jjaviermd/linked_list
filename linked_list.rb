@@ -1,37 +1,66 @@
-
+require 'pry'
 #LinkedList class, which will represent the full list.
 class LinkedList
  #Nodeclass, containing a #value method and a link to the #next_node, set both as nil by default.
- attr_writer :head, :tail,
+ attr_accessor :head,
+
+
  def initialize
-    @head = nil
-    @tail = nil
+    self.head = nil
+    
+    
   end
   
   class Node
-    attr_writer :next_node
-   def initialize (value)
-     @value = value
-     @next_node = nil
-   end
+    attr_accessor :value, :next_node
+
+    def initialize (value)
+     self.value = value
+     self.next_node = nil
+    end
   end
 
   #append(value) adds a new node containing value to the end of the list
   def append(value)
-    self.tail = Node.new(value)
+    if self.head.nil?
+      self.head = Node.new(value)
+    else
+      last = self.head
+      while !last.next_node.nil?
+      last = last.next_node
+      end
+      last.next_node = Node.new(value)
+    end
+    
   end
 
   # prepend(value) adds a new node containing value to the start of the list
   def prepend(value)
-    self.head = Node.new(value)
+    if self.head.nil?
+      self.head = Node.new(value)
+    else
+      last = self.head
+      self.head = Node.new(value)
+      self.head.next_node = last
+    end
+    
   end 
 end
 
 l = LinkedList.new
 l.append('a')
-l.prepend('b')
 
-p l
+l.append('b')
+
+
+l.append('c')
+p l.head.value
+p l.head.next_node.value
+p l.head.next_node.next_node.value
+l.prepend('z')
+# binding.pry
+p l.head.value
+
 
   # size returns the total number of nodes in the list
   # head returns the first node in the list

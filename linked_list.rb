@@ -38,6 +38,18 @@ class LinkedList
     end
     
   end 
+
+  def tail
+    if self.head.nil?
+      raise EstandardError, "Linked list is empty"
+    else
+      last = self.head
+      while !last.next_node.nil?
+        last = last.next_node
+      end
+      last
+    end  
+  end
   
   private
 
@@ -61,13 +73,14 @@ l.append('b')
 
 
 l.append('c')
-p l.head.value
-p l.head.next_node.value
-p l.head.next_node.next_node.value
+# p l.head.value
+# p l.head.next_node.value
+# p l.head.next_node.next_node.value
 l.prepend('z')
 # binding.pry
-p l.head.value
+p l.head
 p l.size
+p l.tail.value
 
 
   # size returns the total number of nodes in the list

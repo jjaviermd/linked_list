@@ -135,6 +135,25 @@ class LinkedList
       str << " nil"
     end
   end
+
+  #insert_at(value, index) that inserts a new node with the
+  # provided value at the given index.
+  def insert_at(value, index)
+    if self.head.nil? ||index <= 0
+      self.prepend(value)
+    elsif index > self.size
+      self.append(value)
+    else
+      n_node =  self.at(index)
+      p_node = self.at(index-1)
+      new_node = Node.new(value)
+      new_node.next_node = n_node
+      p_node.next_node = new_node
+      self.size += 1
+    end
+  end
+
+
   private
 
   attr_writer :size
@@ -150,6 +169,8 @@ class LinkedList
   
 end
 
+
+
 l = LinkedList.new
 l.append('a')
 l.append('b')
@@ -157,16 +178,19 @@ l.append('c')
 # p l.head.value
 # p l.head.next_node.value
 # p l.head.next_node.next_node.value
-l.prepend('z')
+l.prepend('x')
 p l.to_s
-l.pop
+l.insert_at('y', 1)
 p l.to_s
-# p l.tail.value
-# p l.size
+p l.size
+l.insert_at('z', 3)
+p l.to_s
+p l.size
+l.insert_at('j', 0)
+p l.to_s
 
-
-
-  
- 
-  
-  
+ll = LinkedList.new
+ll.insert_at(20, 2)
+p ll.to_s
+ll.insert_at(30, 3)
+p ll.to_s

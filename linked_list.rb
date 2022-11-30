@@ -1,4 +1,4 @@
-require 'byebug'
+require 'pry-byebug'
 
 class LinkedList
   # head returns the first node in the list
@@ -122,7 +122,19 @@ class LinkedList
   # to_s represent your LinkedList objects as strings, so you can print them 
     # out and preview them in the console. The format should be: 
     # ( value ) -> ( value ) -> ( value ) -> nil
-  
+  def to_s
+    if self.head.nil?
+      return nil
+    else
+      str = ""
+      current = self.head
+      self.size.times do
+        str << "( #{current.value.to_s} ) -> "
+        current = current.next_node
+      end
+      str << " nil"
+    end
+  end
   private
 
   attr_writer :size
@@ -146,7 +158,9 @@ l.append('c')
 # p l.head.next_node.value
 # p l.head.next_node.next_node.value
 l.prepend('z')
-p l.find('c')
+p l.to_s
+l.pop
+p l.to_s
 # p l.tail.value
 # p l.size
 

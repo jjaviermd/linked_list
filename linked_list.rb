@@ -84,9 +84,28 @@ class LinkedList
       self
     end
   end
-  # contains?(value) returns true if the passed in value is in the list and otherwise returns false.
-  # find(value) returns the index of the node containing value, or nil if not found.
-  # to_s represent your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> nil
+  # contains?(value) returns true if the passed in value is in the list and 
+    # otherwise returns false.
+  def contains?(value)
+    if self.head.nil?
+      return false
+    else
+      current = self.head
+      return true if current.value == value
+      while !current.next_node.nil?
+        current = current.next_node
+        if current.value == value
+          return true
+        end
+      end
+    end
+    return false
+  end
+  # find(value) returns the index of the node containing value, or nil if not 
+    # found.
+  # to_s represent your LinkedList objects as strings, so you can print them 
+    # out and preview them in the console. The format should be: 
+    # ( value ) -> ( value ) -> ( value ) -> nil
   
   private
 
@@ -104,14 +123,14 @@ class LinkedList
 end
 
 l = LinkedList.new
-# l.append('a')
-# l.append('b')
-# l.append('c')
+l.append('a')
+l.append('b')
+l.append('c')
 # p l.head.value
 # p l.head.next_node.value
 # p l.head.next_node.next_node.value
-# l.prepend('z')
-# p l.pop
+l.prepend('z')
+p l.contains?('k')
 # p l.tail.value
 # p l.size
 

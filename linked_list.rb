@@ -6,13 +6,13 @@ class LinkedList
  # size returns the total number of nodes in the list
  attr_reader :size
 
- def initialize
+  def initialize
     self.head = nil
     self.size = 0
   end
 
-   #append(value) adds a new node containing value to the end of the list
-   def append(value)
+  #append(value) adds a new node containing value to the end of the list
+  def append(value)
     self.size += 1
     if self.head.nil?
       self.head = Node.new(value)
@@ -72,9 +72,18 @@ class LinkedList
   def pop
     if self.head.nil?
       raise StandardError, "Linked list is empty"
+    elsif self.size == 1
+      return nil
+    elsif self.size == 2
+      self.head.next_node = nil
+      self.size -=1 
+      self
     else
-
+      self.at(self.size - 2).next_node = nil
+      self.size -=1
+      self
     end
+  end
   # contains?(value) returns true if the passed in value is in the list and otherwise returns false.
   # find(value) returns the index of the node containing value, or nil if not found.
   # to_s represent your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> nil
@@ -95,17 +104,16 @@ class LinkedList
 end
 
 l = LinkedList.new
-l.append('a')
-
-l.append('b')
-
-
-l.append('c')
+# l.append('a')
+# l.append('b')
+# l.append('c')
 # p l.head.value
 # p l.head.next_node.value
 # p l.head.next_node.next_node.value
-l.prepend('z')
-p l.at(1).value
+# l.prepend('z')
+# p l.pop
+# p l.tail.value
+# p l.size
 
 
 

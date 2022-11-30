@@ -1,4 +1,4 @@
-require 'pry'
+require 'byebug'
 
 class LinkedList
   # head returns the first node in the list
@@ -103,6 +103,22 @@ class LinkedList
   end
   # find(value) returns the index of the node containing value, or nil if not 
     # found.
+  def find(value)
+    if self.head.nil?
+      return nil
+    elsif head.value == value
+      return 0
+    else
+      counter = 0
+      current = self.head
+      until current.next_node.nil?
+        current = current.next_node
+        counter += 1
+        return counter if current.value == value
+      end
+    end
+    return nil
+  end
   # to_s represent your LinkedList objects as strings, so you can print them 
     # out and preview them in the console. The format should be: 
     # ( value ) -> ( value ) -> ( value ) -> nil
@@ -130,7 +146,7 @@ l.append('c')
 # p l.head.next_node.value
 # p l.head.next_node.next_node.value
 l.prepend('z')
-p l.contains?('k')
+p l.find('c')
 # p l.tail.value
 # p l.size
 

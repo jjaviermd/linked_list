@@ -55,7 +55,7 @@ class LinkedList
   # at(index) returns the node at the given index
   def at(index)
     if index < 0 || index >= self.size
-      raise EstandardError, "Index out of range"
+      raise StandardError, "Index out of range"
     else
       if index == 0
         return self.head
@@ -69,6 +69,12 @@ class LinkedList
     end  
   end
   # pop removes the last element from the list
+  def pop
+    if self.head.nil?
+      raise StandardError, "Linked list is empty"
+    else
+
+    end
   # contains?(value) returns true if the passed in value is in the list and otherwise returns false.
   # find(value) returns the index of the node containing value, or nil if not found.
   # to_s represent your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> nil

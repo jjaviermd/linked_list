@@ -153,6 +153,27 @@ class LinkedList
     end
   end
 
+  #remove_at(index) that removes the node at the given index.
+  def remove_at(index)
+    if self.head.nil?
+      raise StandardError, "Linked list is empty"
+    elsif index > self.size-1 || index < 0
+      raise StandardError, "Index out of range"
+    elsif index == 0
+      self.head = self.head.next_node
+      self.size -= 1
+    elsif index == self.size-1
+      new_tail = self.at(index-1)
+      new_tail.next_node = nil
+      self.size -= 1
+    else
+      p_node = self.at(index-1)
+      n_node = self.at(index+1)
+      p_node.next_node = n_node
+      self.size -= 1
+    end
+  end
+
 
   private
 
@@ -179,18 +200,19 @@ l.append('c')
 # p l.head.next_node.value
 # p l.head.next_node.next_node.value
 l.prepend('x')
-p l.to_s
+# p l.to_s
 l.insert_at('y', 1)
-p l.to_s
-p l.size
+# p l.to_s
+# p l.size
 l.insert_at('z', 3)
-p l.to_s
-p l.size
+# p l.to_s
+# p l.size
 l.insert_at('j', 0)
+binding.pry
 p l.to_s
 
-ll = LinkedList.new
-ll.insert_at(20, 2)
-p ll.to_s
-ll.insert_at(30, 3)
-p ll.to_s
+# ll = LinkedList.new
+# ll.insert_at(20, 2)
+# p ll.to_s
+# ll.insert_at(30, 3)
+# p ll.to_s

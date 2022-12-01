@@ -189,30 +189,3 @@ class LinkedList
   end
   
 end
-
-
-
-l = LinkedList.new
-l.append('a')
-l.append('b')
-l.append('c')
-# p l.head.value
-# p l.head.next_node.value
-# p l.head.next_node.next_node.value
-l.prepend('x')
-# p l.to_s
-l.insert_at('y', 1)
-# p l.to_s
-# p l.size
-l.insert_at('z', 3)
-# p l.to_s
-# p l.size
-l.insert_at('j', 0)
-binding.pry
-p l.to_s
-
-# ll = LinkedList.new
-# ll.insert_at(20, 2)
-# p ll.to_s
-# ll.insert_at(30, 3)
-# p ll.to_s
